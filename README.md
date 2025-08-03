@@ -69,7 +69,8 @@ celery -A config beat --loglevel=info
 
 **📋 Postman Collection**: [Complete API Documentation](https://documenter.getpostman.com/view/40097709/2sB3BAMsMt)  
 **🌐 Frontend UI**: [http://165.232.130.130:8001](http://165.232.130.130:8001/subscriptions/)  
-**⚡API Base URL**: `http://165.232.130.130:8001`
+**⚡ API Base URL**: `http://165.232.130.130:8001/api/v1`
+**🧱 Database Schema**: `http://165.232.130.130:8001/api/v1/schema-viewer/` 
 
 ### Key Endpoints
 
@@ -208,10 +209,10 @@ Automated tasks running via Celery:
 
 - **Django Admin**: `http://165.232.130.130:8001/admin`
 
-````
+```
 username: admin
 password: admin1234
-````
+```
 
 - **Frontend**: `http://165.232.130.130:8001`
 
