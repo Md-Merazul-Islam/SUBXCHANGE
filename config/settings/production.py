@@ -27,14 +27,14 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # CORS: Restrict to your domains only
 CORS_ALLOW_ALL_ORIGINS = False
 
-ALLOWED_HOSTS = ["*",'http://165.232.130.130:8001']
+ALLOWED_HOSTS = ["*",'http://165.232.130.130:8000']
 
 CORS_ALLOWED_ORIGINS = [
-    'http://165.232.130.130:8001',
+    'http://165.232.130.130:8000',
 ]
 
 CSRF_TRUSTED_ORIGINS = [
-    'http://165.232.130.130:8001',
+    'http://165.232.130.130:8000',
 ]
 
 
