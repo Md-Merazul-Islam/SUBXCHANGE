@@ -3,7 +3,7 @@ version: '3.8'
 services:
   db:
     image: postgres:15-alpine
-    container_name: django_db
+    container_name: django_db_subx
     environment:
       POSTGRES_DB: ${POSTGRES_DB}
       POSTGRES_USER: ${POSTGRES_USER}
@@ -26,7 +26,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: django_web
+    container_name: django_web_subx
     command: >
       sh -c "python manage.py migrate &&
              python manage.py collectstatic --noinput &&
@@ -49,7 +49,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: django_celery
+    container_name: django_celery_subx
     command: celery -A config worker --loglevel=info
     env_file:
       - .env
@@ -64,7 +64,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: django_celery_beat
+    container_name: django_celery_beat_subx
     command: celery -A config beat --loglevel=info --scheduler django_celery_beat.schedulers:DatabaseScheduler
     env_file:
       - .env
