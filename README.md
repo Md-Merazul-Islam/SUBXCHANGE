@@ -14,7 +14,7 @@ A Django-based subscription management system with real-time currency exchange t
 ## Tech Stack
 
 - **Backend**: Django 4.2+, Django REST Framework
-- **Database**: SQLite (Dev), MySQL (Prod)
+- **Database**: SQLite (Dev), Postgresql (Prod)
 - **Task Queue**: Celery + Redis
 - **External API**: ExchangeRate-API
 - **Containerization**: Docker & Docker Compose
@@ -229,7 +229,7 @@ docker-compose exec web python manage.py test
 ## Production Deployment
 
 1. Set `DEBUG=False` in production
-2. Use PostgreSQL/MySQL for database
+2. Use PostgreSQL for database
 3. Configure proper CORS settings
 4. Set up monitoring and logging
 5. Use environment variables for secrets
