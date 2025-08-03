@@ -1,0 +1,17 @@
+django
+dj-database-url
+djangorestframework       
+djangorestframework_simplejwt 
+pillow 
+psycopg2-binary
+gunicorn
+whitenoise 
+boto3
+django-cors-headers
+python-dotenv    
+requests
+redis
+django-celery-beat
+django-redis
+stripe
+django-schema-viewer

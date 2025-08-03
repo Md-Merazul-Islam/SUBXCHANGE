@@ -1,0 +1,48 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block head_title %}Subscription Plans{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="text-center mb-5">
+        <h1 class="display-4 fw-bold">Subscription Plans</h1>
+        <p class="lead text-muted">Choose the perfect plan for your needs</p>
+    </div>
+
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        {% for plan in plans %}
+        <div class="col">
+            <div class="card h-100 border-0 shadow-sm hover-shadow-lg transition-all">
+                <div class="card-header bg-primary text-white py-4">
+                    <h3 class="my-0 fw-bold text-center">{{ plan.name }}</h3>
+                </div>
+                <div class="card-body">
+                    <div class="text-center mb-4">
+                        <span class="display-3 fw-bold">${{ plan.price }}</span>
+                        <span class="text-muted">/ {{ plan.duration_days }} days</span>
+                    </div>
+                    <ul class="list-unstyled mb-4">
+                        <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Full feature access</li>
+                        <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Priority support</li>
+                        <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Regular updates</li>
+                    </ul>
+                </div>
+                <div class="card-footer bg-transparent border-0 text-center pb-4">
+                    <button class="btn btn-primary btn-lg rounded-pill px-4">
+                        Choose Plan
+                    </button>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col-12">
+            <div class="alert alert-info text-center">
+                <h4 class="alert-heading">No Plans Available</h4>
+                <p>There are currently no subscription plans offered.</p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
