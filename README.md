@@ -21,7 +21,7 @@ A Django-based subscription management system with real-time currency exchange t
 
 ## Quick Start
 
-### Using Optimized multistate Docker 
+### Using Optimized multistate Docker
 
 ```bash
 # Clone repository
@@ -72,13 +72,15 @@ celery -A config beat --loglevel=info
 **⚡API Base URL**: `http://172.252.13.75:3252`
 
 ### Key Endpoints
-- `POST /api-token-auth/` - Authentication
+
+- `POST /auths/login/` - Authentication
 - `POST /api/subscribe/` - Create subscription
 - `GET /api/v1/exchange/exchange-rate/` - Get exchange rate
 
 ### API Examples
 
 **1. Authentication**
+
 ```bash
 POST /api-token-auth/
 {
@@ -86,20 +88,23 @@ POST /api-token-auth/
     "password": "password"
 }
 ```
+
 Response:
+
 ```json
 {
-    "success": true,
-    "statusCode": 200,
-    "message": "Login successful",
-    "data": {
-        "access_token": "eyJ....",
-        "refresh_token": "eyJ...."
-    }
+  "success": true,
+  "statusCode": 200,
+  "message": "Login successful",
+  "data": {
+    "access_token": "eyJ....",
+    "refresh_token": "eyJ...."
+  }
 }
 ```
 
 **2. Create Subscription**
+
 ```bash
 POST /api/v1/subscription/subscribe/
 Authorization: Token 9944b09199c62bcf9418ad846dd0e4bbdfc6ee4b
@@ -107,34 +112,61 @@ Authorization: Token 9944b09199c62bcf9418ad846dd0e4bbdfc6ee4b
     "plan_id": 1
 }
 ```
+
 Response:
+
 ```json
 {
+  "success": true,
+  "statusCode": 201,
+  "message": "Subscription created successfully",
+  "data": {
     "id": 1,
-    "plan": {
-        "name": "Basic Plan",
-        "price": "9.99",
-        "duration_days": 30
+    "user": {
+      "id": 1,
+      "username": "meraz",
+      "email": "admin@gmail.com",
+      "first_name": "",
+      "last_name": ""
     },
-    "status": "active"
+    "plan": {
+      "id": 1,
+      "name": "Basic",
+      "price": "9.99",
+      "duration_days": 30,
+      "created_at": "2025-08-01T15:36:31.390352Z",
+      "updated_at": "2025-08-01T15:36:31.390352Z"
+    },
+    "start_date": "2025-08-01T15:52:09.710570Z",
+    "end_date": "2025-08-31T15:52:09.710570Z",
+    "status": "active",
+    "created_at": "2025-08-01T15:52:09.711570Z",
+    "updated_at": "2025-08-01T15:52:09.711570Z"
+  }
 }
 ```
 
 **3. Get Exchange Rate**
+
 ```bash
 GET /api/v1/exchange/exchange-rate/?base=USD&target=BDT
 Authorization: Token 9944b09199c62bcf9418ad846dd0e4bbdfc6ee4b
 ```
+
 Response:
+
 ```json
 {
-    "success": true,
-    "data": {
-        "base_currency": "USD",
-        "target_currency": "BDT",
-        "rate": 119.50,
-        "fetched_at": "2025-08-02T10:30:00Z"
-    }
+  "success": true,
+  "statusCode": 200,
+  "message": "Exchange rate fetched",
+  "data": {
+    "base_currency": "USD",
+    "target_currency": "BDT",
+    "rate": 122.3321,
+    "fetched_at": "2025-08-01T17:05:51.828607Z",
+    "source": "api"
+  }
 }
 ```
 
@@ -164,11 +196,10 @@ EXCHANGE_API_URL=
 EXCHANGE_API_KEY=
 ```
 
-
-
 ## Background Tasks
 
 Automated tasks running via Celery:
+
 - **Exchange Rate Updates**: Fetches USD to BDT rates every hour
 - **Data Logging**: Stores exchange rate history
 - **Error Handling**: Graceful API failure management
@@ -195,4 +226,3 @@ docker-compose exec web python manage.py test
 3. Configure proper CORS settings
 4. Set up monitoring and logging
 5. Use environment variables for secrets
-
